@@ -46,6 +46,7 @@
     },
     "windows": [
       {
+        "transparent": true,
         "fullscreen": false,
         "resizable": false,
         "title": "pomodoro",

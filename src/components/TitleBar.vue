@@ -12,7 +12,7 @@ const hide = () => {
 
 <template>
   <!-- dsds -->
-  <div data-tauri-drag-region class="titlebar">
+  <div data-tauri-drag-region class="titlebar rounded-t-lg">
     <div 
       class="titlebar-button rounded mr-3"
       @click="hide()"
@@ -32,8 +32,8 @@ const hide = () => {
 <style>
 .titlebar {
   height: 30px;
-  background: var(--title-bg);
-  color: rgb(184, 184, 184);
+  background: var(--color-primary);;
+  color: var(--color-text-primary);;
   user-select: none;
   display: flex;
   align-items: center;
@@ -48,7 +48,9 @@ const hide = () => {
   height: 21px;
 }
 .titlebar-button:hover {
-  background: var(--light-border);
-  color: var(--main-bg);
+  color: var(--color-background);  
+}
+.titlebar-button:active{
+  color: var(--color-secondary);
 }
 </style>
