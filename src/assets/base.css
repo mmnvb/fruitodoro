@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --title-bg: rgb(101, 129, 71);
+  --main-bg: rgb(231, 240, 220);
+  --main-border: rgb(89, 116, 69);
+  --light-border: rgb(114, 151, 98);
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
