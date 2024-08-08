@@ -6,8 +6,12 @@ import FuildAnimation from '../components/FuildAnimation.vue';
   <div class="main flex items-center border justify-around">
     <FuildAnimation />
     <div class="text-center pt-3">
-      <h2 class="text-5xl">Hello world!</h2>
-      <p class="secondary">Secondary text is here!</p>
+      <h2 class="text-5xl">
+        Hello world!
+      </h2>
+      <p class="secondary">
+        Secondary text is here!
+      </p>
     </div>
   </div>
 </template>

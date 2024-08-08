@@ -12,7 +12,10 @@ const hide = () => {
 
 <template>
   <!-- dsds -->
-  <div data-tauri-drag-region class="titlebar rounded-t-lg">
+  <div
+    data-tauri-drag-region
+    class="titlebar rounded-t-lg"
+  >
     <div 
       class="titlebar-button rounded mr-3"
       @click="hide()"

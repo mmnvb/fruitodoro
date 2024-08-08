@@ -11,6 +11,6 @@
     stroke-linejoin="round"
     class="lucide lucide-minus"
   >
-    <path d="M5 12h14"/>
+    <path d="M5 12h14" />
   </svg>
 </template>

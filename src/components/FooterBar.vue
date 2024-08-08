@@ -1,5 +1,5 @@
 <template>
-  <footer class="rounded-b-lg"></footer>
+  <footer class="rounded-b-lg" />
 </template>
 
 <style scoped>

@@ -7,8 +7,8 @@ import FooterBar from './components/FooterBar.vue';
 </script>
 
 <template>
-    <TitleBar />
-    <HomeView />
-    <FooterBar />
+  <TitleBar />
+  <HomeView />
+  <FooterBar />
 </template>
 
