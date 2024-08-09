@@ -100,12 +100,12 @@
     "pineapple": {
       "img": "pineapple.png",
       "colors": {
-        "--color-primary": "#F9D142", 
+        "--color-primary": "#EDC73F", 
         "--color-secondary": "#FFD700", 
         "--color-background": "#FFF9E5", 
         "--color-surface": "#FFF4B1", 
         "--color-text-primary": "#E1AD01", 
-        "--color-text-secondary": "#FFD966", 
+        "--color-text-secondary": "#E3BD4A", 
         "--color-border": "#FFEB3B", 
         "--color-hover": "#FFC107", 
         "--color-shadow": "rgba(249, 209, 66, 0.15)" 

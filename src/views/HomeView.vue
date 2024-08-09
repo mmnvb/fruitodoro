@@ -14,14 +14,14 @@ const imgUpdate = (e) => {
 
 <template>
   <div class="main flex items-center justify-around">
-    <div class="w-2/4 h-full flex flex-col">
+    <div class="w-2/4 h-full flex flex-col mt-2">
       <ChangeTheme @update-img="imgUpdate" />
       <FruitImage
         v-if="imgName"
         :img-name="imgName"
       />
     </div>
-    <TimerLayout />
+    <TimerLayout class="mt-4"/>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="overflow-hidden h-fit select-none">
+  <div class="overflow-hidden mt-2 h-fit select-none">
     <img 
       :src="`/img/${imgName}`"
       alt="icon"
