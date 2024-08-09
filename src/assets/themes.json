@@ -1,18 +1,4 @@
 {
-  "cucumber": {
-    "img": "cucumber.png",
-    "colors": {
-      "--color-primary": "#77DD77",
-      "--color-secondary": "#99FF99",
-      "--color-background": "#F0FFF0",
-      "--color-surface": "#E0FFE0",
-      "--color-text-primary": "#2E8B57",
-      "--color-text-secondary": "#66CDAA",
-      "--color-border": "#B2E3B2",
-      "--color-hover": "#7FFFD4",
-      "--color-shadow": "rgba(119, 221, 119, 0.15)"
-    }
-  },
   "brocolli": {
     "img": "brocolli.png",
     "colors": {
@@ -25,6 +11,20 @@
       "--color-border": "#98FB98",
       "--color-hover": "#7FFF00",
       "--color-shadow": "rgba(107, 142, 35, 0.15)"
+    }
+  },
+  "cucumber": {
+    "img": "cucumber.png",
+    "colors": {
+      "--color-primary": "#77DD77",
+      "--color-secondary": "#99FF99",
+      "--color-background": "#F0FFF0",
+      "--color-surface": "#E0FFE0",
+      "--color-text-primary": "#2E8B57",
+      "--color-text-secondary": "#66CDAA",
+      "--color-border": "#B2E3B2",
+      "--color-hover": "#7FFFD4",
+      "--color-shadow": "rgba(119, 221, 119, 0.15)"
     }
   },
   "carrot": {
@@ -82,5 +82,33 @@
       "--color-hover": "#F44336",
       "--color-shadow": "rgba(211, 47, 47, 0.15)"
     }
+  },
+  "watermelon": {
+      "img": "watermelon.png",
+      "colors": {
+        "--color-primary": "#FC6C85", 
+        "--color-secondary": "#FFD1DC", 
+        "--color-background": "#FFF8F8", 
+        "--color-surface": "#FFE4E4", 
+        "--color-text-primary": "#C2185B", 
+        "--color-text-secondary": "#E57373", 
+        "--color-border": "#FF8A80", 
+        "--color-hover": "#F44336", 
+        "--color-shadow": "rgba(252, 108, 133, 0.15)" 
+      }
+    },
+    "pineapple": {
+      "img": "pineapple.png",
+      "colors": {
+        "--color-primary": "#F9D142", 
+        "--color-secondary": "#FFD700", 
+        "--color-background": "#FFF9E5", 
+        "--color-surface": "#FFF4B1", 
+        "--color-text-primary": "#E1AD01", 
+        "--color-text-secondary": "#FFD966", 
+        "--color-border": "#FFEB3B", 
+        "--color-hover": "#FFC107", 
+        "--color-shadow": "rgba(249, 209, 66, 0.15)" 
+      }
   }
 }

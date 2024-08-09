@@ -27,12 +27,12 @@ const setTheme = (themeName) => {
 }
 
 const nextTheme =() => {
-  index.value++;
   const keys = Object.keys(themes);
   const next = keys[index.value];
 
   if(next){
     setTheme(next);
+    index.value++;
     return
   }
   else if(keys.length > 0){
@@ -55,6 +55,6 @@ onMounted(()=>{
 </script>
 
 <template>
-  <div class="w-10 h-10 border" @click="nextTheme()"></div>
+  <div class="fixed w-2/4 h-1/6 z-10 border" @click="nextTheme()"></div>
   <!-- sdds -->
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import FuildAnimation from '../components/FuildAnimation.vue';
+import FruitImage from '../components/FruitImage.vue';
 import ChangeTheme from '../components/ChangeTheme.vue';
 import TimerLayout from '../components/TimerLayout.vue';
 
@@ -13,9 +13,11 @@ const imgUpdate = (e) => {
 </script>
 
 <template>
-  <div class="main flex items-center border justify-around">
-    <ChangeTheme @update-img="imgUpdate"/>
-    <FuildAnimation :imgName="imgName"/>
+  <div class="main flex items-center justify-around">
+    <div class="w-2/4 h-full flex flex-col">
+      <ChangeTheme @update-img="imgUpdate"/>
+      <FruitImage v-if="imgName" :imgName="imgName"/>
+    </div>
     <TimerLayout />
   </div>
 </template>
