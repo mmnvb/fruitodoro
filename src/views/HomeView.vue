@@ -15,8 +15,11 @@ const imgUpdate = (e) => {
 <template>
   <div class="main flex items-center justify-around">
     <div class="w-2/4 h-full flex flex-col">
-      <ChangeTheme @update-img="imgUpdate"/>
-      <FruitImage v-if="imgName" :imgName="imgName"/>
+      <ChangeTheme @update-img="imgUpdate" />
+      <FruitImage
+        v-if="imgName"
+        :img-name="imgName"
+      />
     </div>
     <TimerLayout />
   </div>

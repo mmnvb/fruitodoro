@@ -55,6 +55,9 @@ onMounted(()=>{
 </script>
 
 <template>
-  <div class="fixed w-2/4 h-1/6 z-10 border" @click="nextTheme()"></div>
+  <div
+    class="fixed w-2/4 h-1/6 z-10 border"
+    @click="nextTheme()"
+  />
   <!-- sdds -->
 </template>
