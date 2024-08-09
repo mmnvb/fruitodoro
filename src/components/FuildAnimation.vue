@@ -1,10 +1,16 @@
 <script setup>
-import PlumIcon from './icons/PlumIcon.vue';
+defineProps({
+  imgName: {
+    type: String,
+    required: true
+  }
+});
+
 </script>
 
 <template>
   <img 
-    src="../assets/plum.png"
+    :src="`/img/${imgName}`"
     alt="icon"
     class="w-1/3 hover:scale-105 transition hover:rotate-12"
   >

@@ -3,19 +3,6 @@
 @tailwind utilities;
 
 
-:root {
-  --color-primary: #9575CD; /* Lavender gray */
-  --color-secondary: #AB47BC; /* Deep plum for accents */
-  --color-background: #EDE7F6; /* Light lavender background */
-  --color-surface: #F3E5F5; /* Soft lavender surface color */
-  --color-text-primary: #6A1B9A; /* Dark plum for primary text */
-  --color-text-secondary: #7B1FA2; /* Muted plum for secondary text */
-  --color-border: #CE93D8; /* Borders and dividers */
-  --color-hover: #BA68C8; /* Hover effect color */
-  --color-shadow: rgba(149, 117, 205, 0.15); /* Subtle shadow color */
-}
-
-
 body{
   overflow: hidden;
   margin: 0;

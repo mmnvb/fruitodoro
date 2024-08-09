@@ -1,0 +1,86 @@
+{
+  "cucumber": {
+    "img": "cucumber.png",
+    "colors": {
+      "--color-primary": "#77DD77",
+      "--color-secondary": "#99FF99",
+      "--color-background": "#F0FFF0",
+      "--color-surface": "#E0FFE0",
+      "--color-text-primary": "#2E8B57",
+      "--color-text-secondary": "#66CDAA",
+      "--color-border": "#B2E3B2",
+      "--color-hover": "#7FFFD4",
+      "--color-shadow": "rgba(119, 221, 119, 0.15)"
+    }
+  },
+  "brocolli": {
+    "img": "brocolli.png",
+    "colors": {
+      "--color-primary": "#6B8E23",
+      "--color-secondary": "#8FBC8F",
+      "--color-background": "#F5FFFA",
+      "--color-surface": "#E0FFE0",
+      "--color-text-primary": "#556B2F",
+      "--color-text-secondary": "#6B8E23",
+      "--color-border": "#98FB98",
+      "--color-hover": "#7FFF00",
+      "--color-shadow": "rgba(107, 142, 35, 0.15)"
+    }
+  },
+  "carrot": {
+    "img": "carrot.png",
+    "colors": {
+      "--color-primary": "#FFA07A",
+      "--color-secondary": "#FF4500",
+      "--color-background": "#FFF5EE",
+      "--color-surface": "#FFDAB9",
+      "--color-text-primary": "#CD5C5C",
+      "--color-text-secondary": "#FF6347",
+      "--color-border": "#FF7F50",
+      "--color-hover": "#FF8C00",
+      "--color-shadow": "rgba(255, 160, 122, 0.15)"
+    }
+  },
+  "raspberry": {
+    "img": "raspberry.png",
+    "colors": {
+      "--color-primary": "#F8BBD0",
+      "--color-secondary": "#F48FB1",
+      "--color-background": "#FFF0F5",
+      "--color-surface": "#FDEEF4",
+      "--color-text-primary": "#C2185B",
+      "--color-text-secondary": "#D81B60",
+      "--color-border": "#F06292",
+      "--color-hover": "#EC407A",
+      "--color-shadow": "rgba(248, 187, 208, 0.15)"
+    }
+  },
+  "plum": {
+    "img": "plum.png",
+    "colors": {
+      "--color-primary": "#9575CD",
+      "--color-secondary": "#AB47BC",
+      "--color-background": "#EDE7F6",
+      "--color-surface": "#F3E5F5",
+      "--color-text-primary": "#6A1B9A",
+      "--color-text-secondary": "#7B1FA2",
+      "--color-border": "#CE93D8",
+      "--color-hover": "#BA68C8",
+      "--color-shadow": "rgba(149, 117, 205, 0.15)"
+    }
+  },
+  "tomato": {
+    "img": "tomato.png",
+    "colors": {
+      "--color-primary": "#D32F2F",
+      "--color-secondary": "#FFCDD2",
+      "--color-background": "#FFF0F1",
+      "--color-surface": "#FFEBEE",
+      "--color-text-primary": "#B71C1C",
+      "--color-text-secondary": "#E57373",
+      "--color-border": "#EF9A9A",
+      "--color-hover": "#F44336",
+      "--color-shadow": "rgba(211, 47, 47, 0.15)"
+    }
+  }
+}
