@@ -17,6 +17,7 @@ defineProps({
       img transition
       scale-105 hover:scale-110
       hover:rotate-12
+      box
       "
     >
   </div>
@@ -28,7 +29,7 @@ defineProps({
   width: 100%;
   height: 100%;
   object-fit: contain;
-  animation: activeState 3s ease-in-out infinite;
+  /* animation: activeState 3s ease-in-out infinite; */
 }
 
 @keyframes activeState {

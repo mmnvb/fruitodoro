@@ -62,7 +62,7 @@ onMounted(()=>{
 <template>
   <div
     class="
-    fixed w-full h-1/6 z-10
+    fixed w-full h-1/6 z-30
     flex items-center justify-around
     select-none
     "
