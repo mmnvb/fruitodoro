@@ -75,7 +75,7 @@ onMounted(()=>{
 
 <style scoped>
 .btn:hover{
-  color: var(--color-border);
+  color: var(--color-hover);
 }
 
 .name{
