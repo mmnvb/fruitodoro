@@ -47,8 +47,23 @@ const nextTheme = (direction) => {
   }
 }
 
+const initInventory = () => {
+  const inventory = localStorage.getItem('inventory');
+
+  if(!inventory){
+    let obj = {}
+
+    Object.keys(themes).forEach((key)=>{
+      obj[key] = {count: 0}
+    })
+
+    localStorage.setItem('inventory', JSON.stringify(obj));
+  }
+}
+
 onMounted(()=>{
   const savedTheme = localStorage.getItem('selectedTheme');
+  initInventory();
 
   if (savedTheme) {
     setTheme(savedTheme);

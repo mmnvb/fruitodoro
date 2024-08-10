@@ -12,19 +12,35 @@ let myInterval;
 const isPaused = ref(true);
 const isDialog = ref(false);
 
-const strTime = computed(()=>{
-  const min = Math.floor(timer.value / 60);
-  const sec = Math.round(((timer.value / 60) - min) * 60);
+// const pomodoro = [1500, 300, 1500, 300, 1500, 300, 1500, 1800];
+const pomodoro = [5, 3, 5, 3, 5, 3, 5, 10];
+const index = ref(0);
 
-  return `${min.toFixed().padStart(2, "0")} : ${sec.toFixed().padStart(2, "0")}`;
+const emit = defineEmits(['onStart', 'onPause', 'onStop']);
+
+const strTime = computed(()=>{
+  let min = Math.floor(timer.value / 60);
+  let sec = Math.round(((timer.value / 60) - min) * 60);
+
+  min = min.toFixed().padStart(2, "0").split('');
+  sec = sec.toFixed().padStart(2, "0").split('');
+
+  return [...min,':',...sec];
 })
 
 const decrTime = () => {
   if(timer.value > 0){
     timer.value --;
   } else{
-    clearInterval(myInterval);
-    // make an alarm here
+    let inventory = JSON.parse(localStorage.getItem('inventory'));
+    const current = localStorage.getItem('selectedTheme');
+    
+    // increment score
+    if(pomodoro[current] == 1500){
+      inventory[current].count++;
+      localStorage.setItem('inventory', JSON.stringify(inventory));
+    }
+    stopTimer();
   }
 }
 
@@ -33,23 +49,41 @@ const runTimer = (time) => {
   myInterval = setInterval(decrTime, 1000);
 }
 
+const getSeconds = () => {
+  if(index.value > pomodoro.length - 1){
+    index.value = 0;
+  }
+  return pomodoro[index.value];
+}
 
-const startWork = () => {
+const startTimer = () => {
   isPaused.value = false;
   clearInterval(myInterval);
-  const time = timer.value === 0 ? 1500 : timer.value;
-  runTimer(time);
+
+  // 25 min
+  const secs = getSeconds();
+  if(timer.value === 0){
+    runTimer(secs);
+    emit('onStart', secs);
+    return
+  }
+  // continue
+  runTimer(timer.value);
+  emit('onStart');
 }
 
 const pauseTimer = () => {
   isPaused.value = true;
   clearInterval(myInterval);
+  emit('onPause');
 }
 
 const stopTimer = () => {
   isPaused.value = true;
   clearInterval(myInterval);
   timer.value = 0;
+  index.value++;
+  emit('onStop');
 }
 
 const confirmStop = (decision) => {
@@ -58,21 +92,26 @@ const confirmStop = (decision) => {
   } 
   isDialog.value = false;
 }
-
 </script>
 
 <template>
   <div 
-    class="flex justify-center items-center flex-col pt-3 w-2/4"
-  >
-    <h2 class="text-6xl w-4/5 select-none text-center">
-      {{ strTime }}
-    </h2>
+    class="flex justify-center items-center flex-col pt-3 w-2/4 h-full"
+  > 
+    <!-- what a shity code is that -->
+    <div class="w-full flex justify-center">
+      <h2 
+        class="text-6xl w-1/6 select-none text-center overflow-hidden"
+        v-for="digit in strTime"
+      >
+        {{ digit }}
+      </h2>
+    </div>
     
     <!-- Toolbox -->
     <div class="toolbox flex w-3/6 mt-2">
       <div v-if="!isDialog" class="w-full flex justify-around items-center">
-        <PlayIcon v-if="isPaused" @click="startWork"/>
+        <PlayIcon v-if="isPaused" @click="startTimer"/>
         <PauseIcon v-else @click="pauseTimer" />
         <StopIcon @click="isDialog = true"/>
       </div>

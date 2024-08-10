@@ -1,10 +1,28 @@
-<template>
-  <div class="container rounded-b-lg" />
-</template>
-
 <script setup>
-// No script needed for this CSS-only animation
+const props = defineProps({
+  duration:{
+    type: Number,
+    required: true
+  },
+  state: {
+    type: String,
+    required: true
+  }
+})
+
+
 </script>
+
+<template>
+  <div 
+    :style="{ 
+      '--animation-duration': `${duration}s`,
+      '--animation-state': state 
+    }"
+    class="container rounded-b-lg"
+    @click="console.log(duration, state)"
+  />
+</template>
 
 <style scoped>
 .container {
@@ -14,6 +32,8 @@
   height: 220px;
   display: flex;
   z-index: 1;
+  --animation-duration: 0s; 
+  --animation-state: paused;
 }
 
 .container::before {
@@ -21,9 +41,10 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  animation: fluid 10s linear infinite;
+  animation: fluid var(--animation-duration) linear;
   background-color: var(--color-shadow);
   z-index: 0;
+  animation-play-state: var(--animation-state);
 }
 
 @keyframes fluid {
