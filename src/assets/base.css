@@ -16,6 +16,10 @@
   font-style: normal;
 }
 
+:root{
+  --view-w: 500px;
+  --view-h: 220px;
+}
 
 body{
   overflow: hidden;

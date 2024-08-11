@@ -3,6 +3,7 @@ import FruitImage from '../components/FruitImage.vue';
 import ChangeTheme from '../components/ChangeTheme.vue';
 import TimerLayout from '../components/TimerLayout.vue';
 import FluidAnimation from '../components/FluidAnimation.vue';
+import SoundBoardView from './SoundBoardView.vue';
 
 import { ref } from 'vue';
 
@@ -13,6 +14,7 @@ const timerDuration = ref();
 const timerState = ref();
 const isTimer = ref(false);
 const isPaused = ref(true);
+const isHome = defineModel({default: true});
 
 const imgUpdate = (e) => {
   imgName.value = e;
@@ -59,7 +61,8 @@ const togglePause = () => {
     :duration="timerDuration"
     :state="timerState"
   />
-
+  <SoundBoardView :class="{'hidden': isHome}"/>
+  
   <!-- main -->
   <div class="main flex items-center justify-around rounded-b-lg">
     <!-- left -->
@@ -89,7 +92,7 @@ const togglePause = () => {
 .main{
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  width: 500px;
-  height: 220px;
+  width: var(--view-w);
+  height: var(--view-h);
 }
 </style>

@@ -10,7 +10,6 @@ const props = defineProps({
   }
 })
 
-
 </script>
 
 <template>
@@ -28,8 +27,8 @@ const props = defineProps({
 .container {
   overflow: hidden;
   position: absolute;
-  width: 500px;
-  height: 220px;
+  width: var(--view-w);
+  height: var(--view-h);
   display: flex;
   z-index: 1;
   --animation-duration: 0s; 

@@ -2,33 +2,42 @@
 import { appWindow } from '@tauri-apps/api/window';
 import MinimizeIcon from './icons/MinimizeIcon.vue';
 import CloseIcon from './icons/CloseIcon.vue';
+import DiscIcon from "./icons/DiscIcon.vue";
 
 const hide = () => {
   setTimeout(()=>{
     appWindow.hide();
   }, 10);
 }
+
 </script>
 
 <template>
   <!-- dsds -->
   <div
     data-tauri-drag-region
-    class="titlebar rounded-t-lg"
+    class="titlebar rounded-t-lg flex justify-between items-center"
   >
-    <div 
-      class="titlebar-button rounded mr-3"
-      @click="hide()"
-    >
-      <MinimizeIcon />
+    <div class="flex gap-3 ml-3">
+      <DiscIcon @click="$emit('onSoundBoard')" class="animate-spin"/>
     </div>
 
-    <div 
-      class="titlebar-button rounded mr-3"
-      @click="appWindow.close()"
-    >
-      <CloseIcon />
+    <div class="flex">
+      <div 
+        class="titlebar-button rounded mr-3"
+        @click="hide()"
+      >
+        <MinimizeIcon />
+      </div>
+  
+      <div 
+        class="titlebar-button rounded mr-3"
+        @click="appWindow.close()"
+      >
+        <CloseIcon />
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -38,9 +47,6 @@ const hide = () => {
   background: var(--color-primary);;
   color: var(--color-text-primary);;
   user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .titlebar-button {
