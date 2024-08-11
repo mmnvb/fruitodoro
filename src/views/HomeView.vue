@@ -7,15 +7,19 @@ import FluidAnimation from '../components/FluidAnimation.vue';
 import { ref } from 'vue';
 
 const imgName = ref();
+const timer = ref();
+
 const timerDuration = ref();
 const timerState = ref();
 const isTimer = ref(false);
+const isPaused = ref(true);
 
 const imgUpdate = (e) => {
   imgName.value = e;
 }
 
 const onStart = (num) => {
+  isPaused.value = false;
   if(num){
     timerDuration.value = num;
     timerState.value = 'running';
@@ -29,10 +33,21 @@ const onStart = (num) => {
 
 const onPause = () => {
   timerState.value = 'paused';
+  isPaused.value = true;
 }
 
 const onStop = () => {
   isTimer.value = false;
+  isPaused.value = true;
+}
+
+const togglePause = () => {
+  if(isPaused.value){
+    timer.value.pauseTimer();
+    return
+  }
+
+  timer.value.startTimer();
 }
 
 </script>
@@ -54,6 +69,8 @@ const onStop = () => {
         v-if="imgName"
         :img-name="imgName"
         class="z-10"
+        @on-toggle="togglePause"
+        v-model="isPaused"
       />
     </div>
     <!-- right -->
@@ -62,6 +79,7 @@ const onStop = () => {
       @on-start="onStart"
       @on-pause="onPause"
       @on-stop="onStop"
+      ref="timer"
     />
   </div>
   

@@ -6,6 +6,14 @@ defineProps({
   }
 });
 
+const emit = defineEmits(['onToggle']) 
+const isPaused = defineModel({default: true});
+
+const togglePause = () => {
+  isPaused.value = !isPaused.value;
+  emit('onToggle');
+}
+
 </script>
 
 <template>
@@ -19,6 +27,7 @@ defineProps({
       hover:rotate-12
       box
       "
+      @click="togglePause"
     >
   </div>
   <!-- <PlumIcon class="w-1/3" /> -->

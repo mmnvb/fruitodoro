@@ -5,6 +5,7 @@ import StopIcon from './icons/StopIcon.vue'
 import PauseIcon from './icons/PauseIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
+import FlameIcon from './icons/FlameIcon.vue'
 
 // set in seconds 1500 = 25 min
 const timer = ref(0);
@@ -13,8 +14,9 @@ const isPaused = ref(true);
 const isDialog = ref(false);
 
 // const pomodoro = [1500, 300, 1500, 300, 1500, 300, 1500, 1800];
-const pomodoro = [5, 3, 5, 3, 5, 3, 5, 10];
+const pomodoro = [2, 1, 2, 1, 2, 1, 2, 5];
 const index = ref(0);
+const streak = ref(0);
 
 const emit = defineEmits(['onStart', 'onPause', 'onStop']);
 
@@ -36,7 +38,8 @@ const decrTime = () => {
     const current = localStorage.getItem('selectedTheme');
     
     // increment score
-    if(pomodoro[current] == 1500){
+    if(pomodoro[index.value] == pomodoro[0]){
+      streak.value = streak.value < 4 ? streak.value+1 : 1;
       inventory[current].count++;
       localStorage.setItem('inventory', JSON.stringify(inventory));
     }
@@ -92,6 +95,11 @@ const confirmStop = (decision) => {
   } 
   isDialog.value = false;
 }
+
+defineExpose({
+  pauseTimer,
+  startTimer
+})
 </script>
 
 <template>
@@ -110,9 +118,10 @@ const confirmStop = (decision) => {
     
     <!-- Toolbox -->
     <div class="toolbox flex w-3/6 mt-2">
-      <div v-if="!isDialog" class="w-full flex justify-around items-center">
+      <div v-if="!isDialog" class="w-full flex justify-between items-center">
         <PlayIcon v-if="isPaused" @click="startTimer"/>
         <PauseIcon v-else @click="pauseTimer" />
+        {{ streak }}
         <StopIcon @click="isDialog = true"/>
       </div>
       <!-- confirm to stop -->
