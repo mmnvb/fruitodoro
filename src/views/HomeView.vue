@@ -68,7 +68,7 @@ const togglePause = () => {
       <FruitImage
         v-if="imgName"
         :img-name="imgName"
-        class="z-10"
+        class="z-10 mt-2"
         @on-toggle="togglePause"
         v-model="isPaused"
       />

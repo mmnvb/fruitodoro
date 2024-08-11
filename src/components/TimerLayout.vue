@@ -5,7 +5,6 @@ import StopIcon from './icons/StopIcon.vue'
 import PauseIcon from './icons/PauseIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
-import FlameIcon from './icons/FlameIcon.vue'
 
 // set in seconds 1500 = 25 min
 const timer = ref(0);
@@ -96,6 +95,7 @@ const confirmStop = (decision) => {
   isDialog.value = false;
 }
 
+
 defineExpose({
   pauseTimer,
   startTimer
@@ -104,8 +104,19 @@ defineExpose({
 
 <template>
   <div 
-    class="flex justify-center items-center flex-col pt-3 w-2/4 h-full"
+    class="flex justify-center items-center flex-col pt-3 w-2/4 h-full relative"
   > 
+    <span 
+      v-if="streak > 0" 
+      class="
+        text-sm text-center
+        absolute bottom-3 right-3
+        select-none sec
+        "
+    >
+      {{ streak }}
+    </span>
+
     <!-- what a shity code is that -->
     <div class="w-full flex justify-center">
       <h2 
@@ -117,11 +128,10 @@ defineExpose({
     </div>
     
     <!-- Toolbox -->
-    <div class="toolbox flex w-3/6 mt-2">
-      <div v-if="!isDialog" class="w-full flex justify-between items-center">
+    <div class="toolbox flex w-3/6 mt-2 flex-col items-center gap-3">
+      <div v-if="!isDialog" class="w-full flex justify-around items-center">
         <PlayIcon v-if="isPaused" @click="startTimer"/>
         <PauseIcon v-else @click="pauseTimer" />
-        {{ streak }}
         <StopIcon @click="isDialog = true"/>
       </div>
       <!-- confirm to stop -->
@@ -143,4 +153,7 @@ defineExpose({
   height: 2rem;
 }
 
+.sec{
+  color: var(--color-text-secondary);
+}
 </style>
