@@ -11,10 +11,10 @@ import BirdIcon from '../components/icons/BirdIcon.vue'
 <template>
   <div class="main rounded-b-lg flex flex-col items-center select-none">
     <h1 class="text-center mt-4 text-xl">Ambient sounds</h1>
-
+    
     <!-- Cards -->
     <div class="flex flex-wrap items-center justify-center w-4/5 h-4/5 gap-3 mb-4 mt-4">
-      <SoundCard audioName="rain.ogg">
+      <SoundCard audioName="night.ogg">
         <NightIcon/>
       </SoundCard>
 
