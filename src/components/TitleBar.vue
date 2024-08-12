@@ -18,8 +18,10 @@ const hide = () => {
     data-tauri-drag-region
     class="titlebar rounded-t-lg flex justify-between items-center"
   >
-    <div class="flex gap-3 ml-3">
-      <DiscIcon @click="$emit('onSoundBoard')" class="animate-spin"/>
+    <div class="ml-3 disc">
+      <DiscIcon 
+        @click="$emit('onSoundBoard')"
+      />
     </div>
 
     <div class="flex">
@@ -49,13 +51,19 @@ const hide = () => {
   user-select: none;
 }
 
-.titlebar-button {
+.titlebar-button, .disc {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 21px;
   height: 21px;
 }
+
+.disc:hover{
+  color: var(--color-background);
+}
+
+
 .titlebar-button:hover {
   color: var(--color-background);  
 }
