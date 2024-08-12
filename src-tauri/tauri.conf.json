@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "pomodoro",
+    "productName": "fruitodoro",
     "version": "0.0.0"
   },
   "tauri": {
@@ -46,10 +46,10 @@
     },
     "windows": [
       {
+        "title": "fruitodoro",
         "transparent": true,
         "fullscreen": false,
         "resizable": false,
-        "title": "pomodoro",
         "width": 500,
         "height": 250,
         "decorations": false

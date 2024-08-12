@@ -33,10 +33,11 @@ const decrTime = () => {
   if(timer.value > 0){
     timer.value --;
   } else{
+    // Timer stopped
     let inventory = JSON.parse(localStorage.getItem('inventory'));
     const current = localStorage.getItem('selectedTheme');
     
-    // increment score
+    // if work was done
     if(pomodoro[index.value] == pomodoro[0]){
       streak.value = streak.value < 4 ? streak.value+1 : 1;
       inventory[current].count++;
