@@ -114,11 +114,12 @@ onUnmounted(()=>{
 .btn{
   width: 26%;
   height: 40%;
-  border: solid 2px var(--color-surface);
+  border: solid 2px var(--color-shadow);
 }
 
 .btn:hover{
   border-color: var(--color-hover);
+  color: var(--color-text-primary);
 }
 
 .spec{

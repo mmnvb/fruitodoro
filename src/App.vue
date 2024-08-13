@@ -6,13 +6,18 @@ import HomeView from './views/HomeView.vue'
 
 import { ref } from 'vue';
 
-const isHome = ref(true);
+const tabName = ref('home');
+
+const handleTabSwicth = (e) => {
+  tabName.value = e;
+}
+
 </script>
 
 <template>
   <TitleBar 
-    @on-sound-board="isHome = !isHome" 
+    @on-tab="handleTabSwicth" 
   />
-  <HomeView v-model="isHome"/>
+  <HomeView v-model="tabName"/>
 </template>
 

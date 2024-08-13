@@ -14,6 +14,7 @@ const isDialog = ref(false);
 
 // const pomodoro = [1500, 300, 1500, 300, 1500, 300, 1500, 1800];
 const pomodoro = [2, 1, 2, 1, 2, 1, 2, 5];
+
 const index = ref(0);
 const streak = ref(0);
 

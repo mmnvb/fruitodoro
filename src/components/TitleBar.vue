@@ -2,7 +2,13 @@
 import { appWindow } from '@tauri-apps/api/window';
 import MinimizeIcon from './icons/MinimizeIcon.vue';
 import CloseIcon from './icons/CloseIcon.vue';
+import DotsIcon from './icons/DotsIcon.vue';
 import DiscIcon from "./icons/DiscIcon.vue";
+import WarehouseIcon from './icons/WarehouseIcon.vue';
+import SettingsIcon from './icons/SettingsIcon.vue';
+import { ref } from 'vue';
+
+const emit = defineEmits(['onTab']);
 
 const hide = () => {
   setTimeout(()=>{
@@ -10,34 +16,75 @@ const hide = () => {
   }, 10);
 }
 
+const isOpen = ref(false);
+const lastTab = ref();
+
+const sendEmit = (name) => {
+  if(lastTab.value == name){
+    goHome();
+    return;
+  }
+
+  emit('onTab', name);
+  lastTab.value = name;
+}
+
+const goHome = () => {
+  emit('onTab', 'home');
+  lastTab.value = '';
+}
+
+const autoClose = () =>{
+  if(isOpen.value){
+    goHome();
+  }
+  
+  isOpen.value = !isOpen.value;
+}
+
 </script>
 
 <template>
-  <!-- dsds -->
   <div
     data-tauri-drag-region
     class="titlebar rounded-t-lg flex justify-between items-center"
   >
-    <div class="ml-3 disc">
-      <DiscIcon 
-        @click="$emit('onSoundBoard')"
+    <div class="flex">
+      <DotsIcon 
+        class="ml-3 btn"
+        @click="autoClose"
       />
+      
+      <div 
+        class="flex items-center ml-3 gap-4"
+        :class="{'hidden': !isOpen}"
+      >
+        <DiscIcon 
+          @click="sendEmit('disc')"
+          class="micro"
+        />
+        <WarehouseIcon
+          @click="sendEmit('inventory')" 
+          class="micro"
+        />
+
+        <SettingsIcon
+          @click="sendEmit('settings')" 
+          class="micro"
+        />
+      </div>
     </div>
 
     <div class="flex">
-      <div 
-        class="titlebar-button rounded mr-3"
+      <MinimizeIcon 
+        class="btn mr-3"
         @click="hide()"
-      >
-        <MinimizeIcon />
-      </div>
-  
-      <div 
-        class="titlebar-button rounded mr-3"
+      />
+
+      <CloseIcon 
+        class="btn mr-3"
         @click="appWindow.close()"
-      >
-        <CloseIcon />
-      </div>
+      />
     </div>
 
   </div>
@@ -51,23 +98,21 @@ const hide = () => {
   user-select: none;
 }
 
-.titlebar-button, .disc {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.micro{
+  width: 19px;
+  height: 19px;
+}
+
+.btn{
   width: 21px;
   height: 21px;
 }
 
-.disc:hover{
+.btn:hover, .micro:hover{
   color: var(--color-background);
 }
 
-
-.titlebar-button:hover {
-  color: var(--color-background);  
-}
-.titlebar-button:active{
+.btn:active, .micro:active{
   color: var(--color-secondary);
 }
 </style>

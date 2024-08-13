@@ -1,8 +1,8 @@
 <script setup>
 import themes from '../assets/themes.json'
 import { onMounted, ref } from 'vue';
-import LeftArrowIcon from '../components/icons/LeftArrowIcon.vue'
-import RightArrowIcon from '../components/icons/RightArrowIcon.vue'
+import LeftArrowIcon from './icons/LeftArrowIcon.vue'
+import RightArrowIcon from './icons/RightArrowIcon.vue'
 
 const index = ref(0);
 const emit = defineEmits(['updateImg']);
@@ -77,14 +77,26 @@ onMounted(()=>{
 <template>
   <div
     class="
-    fixed w-full h-1/6 z-30
+    absolute w-full h-1/6 z-30 top-1
     flex items-center justify-around
     select-none
     "
   >
-    <LeftArrowIcon class="btn" @click="nextTheme('left')"/>
-    <p class="name w-28 text-center text-xl">{{ fruitName }}</p>
-    <RightArrowIcon  class="btn" @click="nextTheme('right')" />
+    <div class="pair">
+    </div>
+
+    <div class="flex w-3/4 justify-around items-center h-full">
+      <LeftArrowIcon class="btn" @click="nextTheme('left')"/>
+      <p 
+        class="name w-3/4 text-center text-xl"
+      >
+        {{ fruitName }}
+      </p>
+      <RightArrowIcon  class="btn" @click="nextTheme('right')" />
+    </div>
+
+    <div class="pair">
+    </div>
   </div>
 </template>
 
@@ -93,8 +105,16 @@ onMounted(()=>{
   color: var(--color-hover);
 }
 
+.sec{
+  color: var(--color-text-secondary);
+}
+
 .name{
   color: var(--color-primary);
   color: "#FFD966";
+}
+
+.pair{
+  width: 12.5%;
 }
 </style>

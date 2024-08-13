@@ -4,6 +4,8 @@ import ChangeTheme from '../components/ChangeTheme.vue';
 import TimerLayout from '../components/TimerLayout.vue';
 import FluidAnimation from '../components/FluidAnimation.vue';
 import SoundBoardView from './SoundBoardView.vue';
+import InventoryView from './InventoryView.vue';
+import SettingsView from './SettingsView.vue';
 
 import { ref } from 'vue';
 
@@ -14,7 +16,7 @@ const timerDuration = ref();
 const timerState = ref();
 const isTimer = ref(false);
 const isPaused = ref(true);
-const isHome = defineModel({default: true});
+const tabName = defineModel({default: 'home'});
 
 const imgUpdate = (e) => {
   imgName.value = e;
@@ -61,17 +63,26 @@ const togglePause = () => {
     :duration="timerDuration"
     :state="timerState"
   />
-  <SoundBoardView :class="{'hidden': isHome}"/>
-  
+  <!-- Tabs -->
+  <SoundBoardView :class="{'hidden': tabName!='disc'}"/>
+  <InventoryView :class="{'hidden': tabName!='inventory'}"/>
+  <SettingsView :class="{'hidden': tabName!='settings'}"/>
+
   <!-- main -->
-  <div class="main flex items-center justify-around rounded-b-lg">
+  <div 
+    class="
+    main flex items-center
+    justify-around rounded-b-lg
+    relative
+    "
+  >
     <!-- left -->
-    <div class="w-2/4 h-full flex flex-col mt-2">
+    <div class="w-2/4 h-full flex flex-col">
       <ChangeTheme @update-img="imgUpdate" />
       <FruitImage
         v-if="imgName"
         :img-name="imgName"
-        class="z-10 mt-2"
+        class="z-10 mt-4"
         @on-toggle="togglePause"
         v-model="isPaused"
       />
