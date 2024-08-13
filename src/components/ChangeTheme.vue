@@ -54,7 +54,11 @@ const initInventory = () => {
     let obj = {}
 
     Object.keys(themes).forEach((key)=>{
-      obj[key] = {count: 0}
+      obj[key] = {
+        count: 0,
+        img: themes[key].img,
+        name: key
+      }
     })
 
     localStorage.setItem('inventory', JSON.stringify(obj));

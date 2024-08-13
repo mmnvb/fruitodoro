@@ -1,6 +1,38 @@
+<script setup>
+import FruitCard from '../components/FruitCard.vue';
+import { onMounted, ref } from 'vue';
+
+const fruits = ref();
+
+const refresh = () => {
+  fruits.value = JSON.parse(localStorage.getItem('inventory'));
+}
+
+onMounted(()=>{
+  refresh();
+})
+</script>
+
 <template>
-  <div class="main">
-    <h2>inventory</h2>
+  <div class="
+    main rounded-b-lg flex flex-col items-center select-none
+    ">
+    <h1 class="text-center mt-4 text-xl">Inventory</h1>
+
+    <div 
+      v-if="fruits"
+      class="
+        flex flex-wrap w-4/5 items-center gap-3
+        mt-2
+        "
+    >
+      <FruitCard 
+        v-for="item in fruits"
+        :key="item.img"
+        :img="item.img"
+        :quantity="item.count"
+      />
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="main">
-    <h2>Settings</h2>
+  <div class="main rounded-b-lg flex flex-col items-center select-none">
+    <h1 class="text-center mt-4 text-xl">Settings</h1>
   </div>
 </template>
 

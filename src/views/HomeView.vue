@@ -65,8 +65,8 @@ const togglePause = () => {
   />
   <!-- Tabs -->
   <SoundBoardView :class="{'hidden': tabName!='disc'}"/>
-  <InventoryView :class="{'hidden': tabName!='inventory'}"/>
-  <SettingsView :class="{'hidden': tabName!='settings'}"/>
+  <InventoryView v-if="tabName == 'inventory'" />
+  <SettingsView v-if="tabName == 'settings'"/>
 
   <!-- main -->
   <div 
