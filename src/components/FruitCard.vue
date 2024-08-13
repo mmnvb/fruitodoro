@@ -18,7 +18,13 @@ defineProps({
     >
     <div>
       <h3 
-        class="chip absolute -right-1 -bottom-2 rounded w-6 text-center"
+        class="
+          chip absolute
+          -right-1 -bottom-2 
+          rounded
+          w-6 text-center
+          align-middle
+         "
       >
         x{{ quantity }}
       </h3>
