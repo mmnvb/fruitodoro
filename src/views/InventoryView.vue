@@ -2,7 +2,7 @@
 import FruitCard from '../components/FruitCard.vue';
 import { onMounted, ref } from 'vue';
 
-const fruits = ref();
+const fruits = ref(null);
 
 const refresh = () => {
   fruits.value = JSON.parse(localStorage.getItem('inventory'));
@@ -19,17 +19,17 @@ onMounted(()=>{
     ">
     <h1 class="text-center mt-4 text-xl">Inventory</h1>
 
-    <div 
-      v-if="fruits"
+    <div
       class="
         flex flex-wrap w-4/5 items-center gap-3
         mt-2
         "
+      v-if="fruits"
     >
       <FruitCard 
         v-for="item in fruits"
         :key="item.img"
-        :img="item.img"
+        :imgName="item.img"
         :quantity="item.count"
       />
     </div>

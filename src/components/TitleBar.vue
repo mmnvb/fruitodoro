@@ -119,7 +119,7 @@ const autoClose = () =>{
   color: var(--color-background);
 }
 
-.btn:active, .micro:active{
+.btn:active{
   color: var(--color-secondary);
 }
 </style>

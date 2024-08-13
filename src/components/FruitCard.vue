@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  img: {
+  imgName: {
     type: String,
     required: true
   },
@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <div class="card relative rounded">
-    <img :src="`/img/${img}`" 
+    <img :src="`/img/${imgName}`" 
       class="transition"
     >
     <div>

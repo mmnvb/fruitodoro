@@ -6,6 +6,7 @@ import PauseIcon from './icons/PauseIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
 import { playBack, playClick } from '../misc/audio';
+import { notify } from '../misc/notify';
 
 // set in seconds 1500 = 25 min
 const timer = ref(0);
@@ -41,9 +42,13 @@ const decrTime = () => {
     
     // if work was done
     if(pomodoro[index.value] == pomodoro[0]){
+      notify("STOP working", "It's time to take a break!");
       streak.value = streak.value < 4 ? streak.value+1 : 1;
       inventory[current].count++;
       localStorage.setItem('inventory', JSON.stringify(inventory));
+    } 
+    else{
+      notify("Rest is over", "Go and work now!");
     }
     stopTimer();
   }
