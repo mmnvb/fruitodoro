@@ -30,7 +30,7 @@ defineProps({
 .card{
   width: 70px;
   height: 70px;
-  border: solid 2px var(--color-primary);
+  border: solid 2px var(--color-shadow);
 }
 
 .card img{
@@ -49,4 +49,7 @@ defineProps({
   transition: all .3 ease;
 }
 
+.card:hover{
+  border-color: var(--color-border);
+}
 </style>
