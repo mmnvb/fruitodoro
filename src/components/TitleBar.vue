@@ -6,6 +6,7 @@ import DotsIcon from './icons/DotsIcon.vue';
 import DiscIcon from "./icons/DiscIcon.vue";
 import WarehouseIcon from './icons/WarehouseIcon.vue';
 import SettingsIcon from './icons/SettingsIcon.vue';
+import { playClick, playBack } from '../misc/audio';
 import { ref } from 'vue';
 
 const emit = defineEmits(['onTab']);
@@ -20,11 +21,15 @@ const isOpen = ref(false);
 const lastTab = ref();
 
 const sendEmit = (name) => {
+  
+
   if(lastTab.value == name){
+    playBack();
     goHome();
     return;
   }
 
+  playClick();
   emit('onTab', name);
   lastTab.value = name;
 }
@@ -36,9 +41,11 @@ const goHome = () => {
 
 const autoClose = () =>{
   if(isOpen.value){
+    playBack();
     goHome();
+  }else{
+    playClick();
   }
-  
   isOpen.value = !isOpen.value;
 }
 

@@ -3,6 +3,7 @@ import themes from '../assets/themes.json'
 import { onMounted, ref } from 'vue';
 import LeftArrowIcon from './icons/LeftArrowIcon.vue'
 import RightArrowIcon from './icons/RightArrowIcon.vue'
+import { playClick } from '../misc/audio';
 
 const index = ref(0);
 const emit = defineEmits(['updateImg']);
@@ -31,6 +32,7 @@ const setTheme = (themeName) => {
 }
 
 const nextTheme = (direction) => {
+  playClick();
   index.value += (direction == "left" ? -1 : 1);
 
   const keys = Object.keys(themes);

@@ -5,6 +5,7 @@ import StopIcon from './icons/StopIcon.vue'
 import PauseIcon from './icons/PauseIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
+import { playBack, playClick } from '../misc/audio';
 
 // set in seconds 1500 = 25 min
 const timer = ref(0);
@@ -61,6 +62,7 @@ const getSeconds = () => {
 }
 
 const startTimer = () => {
+  playClick();
   isPaused.value = false;
   clearInterval(myInterval);
 
@@ -77,6 +79,7 @@ const startTimer = () => {
 }
 
 const pauseTimer = () => {
+  playBack();
   isPaused.value = true;
   clearInterval(myInterval);
   emit('onPause');
@@ -91,10 +94,14 @@ const stopTimer = () => {
 }
 
 const confirmStop = (decision) => {
-  if(decision){
-    stopTimer();
-  } 
   isDialog.value = false;
+
+  if(decision){
+    playBack();
+    stopTimer();
+    return;
+  }
+  playClick();
 }
 
 
@@ -134,7 +141,7 @@ defineExpose({
       <div v-if="!isDialog" class="w-full flex justify-around items-center">
         <PlayIcon v-if="isPaused" @click="startTimer"/>
         <PauseIcon v-else @click="pauseTimer" />
-        <StopIcon @click="isDialog = true"/>
+        <StopIcon @click="isDialog = true; playClick();"/>
       </div>
       <!-- confirm to stop -->
       <div v-if="isDialog" class="w-full flex justify-around items-center">
