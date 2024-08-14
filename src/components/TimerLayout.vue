@@ -5,17 +5,22 @@ import StopIcon from './icons/StopIcon.vue'
 import PauseIcon from './icons/PauseIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
-import { playBack, playClick } from '../misc/audio';
+import  AddIcon from './icons/AddIcon.vue';
+import LikeIcon from './icons/LikeIcon.vue';
+import { playBack, playClick, playAlarm, stopAlarm } from '../misc/audio';
 import { notify } from '../misc/notify';
+
 
 // set in seconds 1500 = 25 min
 const timer = ref(0);
 let myInterval;
 const isPaused = ref(true);
 const isDialog = ref(false);
+const isAlarm = ref(false);
+const isExtra = ref(false);
 
-// const pomodoro = [1500, 300, 1500, 300, 1500, 300, 1500, 1800];
-const pomodoro = [2, 1, 2, 1, 2, 1, 2, 5];
+const pomodoro = [1500, 300, 1500, 300, 1500, 300, 1500, 1800];
+// const pomodoro = [2, 1, 2, 1, 2, 1, 2, 5];
 
 const index = ref(0);
 const streak = ref(0);
@@ -39,16 +44,29 @@ const decrTime = () => {
     // Timer stopped
     let inventory = JSON.parse(localStorage.getItem('inventory'));
     const current = localStorage.getItem('selectedTheme');
+    playAlarm();
+    isAlarm.value = true;
     
-    // if work was done
+    // work -> break
     if(pomodoro[index.value] == pomodoro[0]){
-      notify("STOP working", "It's time to take a break!");
+      notify("Stop working", "It's time to take a break!");
       streak.value = streak.value < 4 ? streak.value+1 : 1;
       inventory[current].count++;
       localStorage.setItem('inventory', JSON.stringify(inventory));
     } 
+    // extra -> work/break
+    else if(isExtra.value){
+      notify("Hey!", "Your extra time is up");
+      isExtra.value = false;
+      isPaused.value = true;
+      clearInterval(myInterval);
+      timer.value = 0;
+      emit('onStop');
+      return;
+    }
+    // break -> work
     else{
-      notify("Rest is over", "Go and work now!");
+      notify("Hey!", "It's time to work");
     }
     stopTimer();
   }
@@ -66,13 +84,14 @@ const getSeconds = () => {
   return pomodoro[index.value];
 }
 
-const startTimer = () => {
+const startTimer = (e, time) => {
   playClick();
   isPaused.value = false;
   clearInterval(myInterval);
 
   // 25 min
-  const secs = getSeconds();
+  const secs = time ?? getSeconds();
+
   if(timer.value === 0){
     runTimer(secs);
     emit('onStart', secs);
@@ -106,6 +125,22 @@ const confirmStop = (decision) => {
     stopTimer();
     return;
   }
+
+  playClick();
+}
+
+const confirmAlarm = (decision) => {
+  isAlarm.value = false;
+  isDialog.value = false;
+  stopAlarm();
+
+  if(decision){
+    isExtra.value = true;
+    startTimer(null, 60); // extra time
+    return;
+  }
+
+  startTimer();
   playClick();
 }
 
@@ -143,15 +178,20 @@ defineExpose({
     
     <!-- Toolbox -->
     <div class="toolbox flex w-3/6 mt-2 flex-col items-center gap-3">
-      <div v-if="!isDialog" class="w-full flex justify-around items-center">
+      <div v-if="!isDialog && !isAlarm" class="w-full flex justify-around items-center">
         <PlayIcon v-if="isPaused" @click="startTimer"/>
         <PauseIcon v-else @click="pauseTimer" />
         <StopIcon @click="isDialog = true; playClick();"/>
       </div>
       <!-- confirm to stop -->
-      <div v-if="isDialog" class="w-full flex justify-around items-center">
+      <div v-if="isDialog && !isAlarm" class="w-full flex justify-around items-center">
         <CheckIcon @click="confirmStop(true)" />
         <CloseIcon @click="confirmStop(false)" />
+      </div>
+
+      <div v-if="isAlarm" class="w-full flex justify-around items-center">
+        <LikeIcon @click="confirmAlarm(false)"/>
+        <AddIcon @click="confirmAlarm(true)"/>
       </div>
     </div>
   </div>
