@@ -41,7 +41,6 @@ because I decided to not use state managers like Pinia to have more practice wit
 However, there are a lot of features that might be implemented, so I will be glad to
 see any PRs.
 
-#### 🍍 New fruit
 If you want to add a **new fruit**, you can just create an object inside *src/assets/themes.json*
 This object must contain proper css theme colors and img's name. The image itself must placed to the
 *public/img* directory. Recompile and now you have a new fruit. \
