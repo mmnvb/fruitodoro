@@ -18,9 +18,12 @@
 - **Soundboard**: Enjoy built-in panel with relaxing sounds.
 - **System tray**: App goes to tray on minimize.
 - **Awesome UI**: Enjoy a cozy, light-themed interface.
-- **Tauri App**: Lightweight and secure, built with [Tauri](https://tauri.app/).
+- **Tauri App**: Lightweight and secure, built with [Tauri](https://tauri.app/). 
 
 <br>
+
+  **[📹DEMO](https://www.youtube.com/watch?v=Yfpj5IL1PTQ)**
+
 
 ## 💚 How to use?
 1. **Install** the latest build or build on your own
