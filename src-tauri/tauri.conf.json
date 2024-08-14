@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "fruitodoro",
-    "version": "0.0.1"
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -35,13 +35,11 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "mmnvb.timer",
+      "identifier": "mmnvb.fruitodoro",
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "icons/icon.ico",
+        "icons/icon.png",
+        "icons/icon.icns"
       ]
     },
     "security": {
@@ -49,7 +47,7 @@
     },
     "windows": [
       {
-        "title": "fruitodoro",
+        "title": "Fruitodoro",
         "transparent": true,
         "fullscreen": false,
         "resizable": false,

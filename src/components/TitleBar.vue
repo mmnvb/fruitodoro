@@ -6,6 +6,7 @@ import DotsIcon from './icons/DotsIcon.vue';
 import DiscIcon from "./icons/DiscIcon.vue";
 import WarehouseIcon from './icons/WarehouseIcon.vue';
 import SettingsIcon from './icons/SettingsIcon.vue';
+import GithubIcon from './icons/GithubIcon.vue';
 import { playClick, playBack } from '../misc/audio';
 import { ref } from 'vue';
 
@@ -79,6 +80,15 @@ const autoClose = () =>{
           @click="sendEmit('settings')" 
           class="micro"
         />
+        <a 
+          href="https://github.com/mmnvb/fruitodoro"
+          target="_blank"
+        >
+          <GithubIcon 
+            @click="playClick();" 
+            class="micro"
+          />
+        </a>
       </div>
     </div>
 
