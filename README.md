@@ -16,8 +16,8 @@
 - **Fruit Selection**: Choose from a variety of fruits to replace the tomato.
 - **Progress Tracking**: Keep track of your completed sessions.
 - **Soundboard**: Enjoy built-in panel with relaxing sounds.
-- **Simple and Intuitive UI**: Easy to navigate and use.
-- **Light Theme**: Enjoy a cozy, light-themed interface.
+- **System tray**: App goes to tray on minimize.
+- **Awesome UI**: Enjoy a cozy, light-themed interface.
 - **Tauri App**: Lightweight and secure, built with [Tauri](https://tauri.app/).
 
 <br>
