@@ -26,13 +26,13 @@
 
 
 ## 💚 How to use?
-1. **Install** the latest build or build on your own
+1. **Install** the latest bundle or build on your own
 2. **Open the bundle** and follow the steps of installation
 3. **Enjoy** the app!
 
-👨‍🌾 *You can use these different fruits as indiators of your school subject. 
-You can mentally link a subject for example math to a watermelon.
-Navigating to a inventory panel will show you have many 25 min math sessions 
+👨‍🌾 *You can use different fruits as indiators of your school subject. 
+You can mentally link a subject, for example math, to a watermelon.
+Navigating to the inventory panel will show you have many 25 min math sessions 
 have you done by showing how many watermelons you have.*
 
 <br>
@@ -45,7 +45,7 @@ However, there are a lot of features that might be implemented, so I will be gla
 see any PRs.
 
 If you want to add a **new fruit**, you can just create an object inside *src/assets/themes.json*
-This object must contain proper css theme colors and img's name. The image itself must placed to the
+This object must contain proper css theme colors and img's name. The image itself must be placed to the
 *public/img* directory. Recompile and now you have a new fruit. \
 \
 *Hint: Explore how other fruits are created*
@@ -54,7 +54,7 @@ This object must contain proper css theme colors and img's name. The image itsel
 
 ## 🛠️ Build
 
-**Rust, tauri and npm must be installed ❗️**
+**Rust, tauri and node must be installed ❗️**
 
 
 1. **Clone the repository**
