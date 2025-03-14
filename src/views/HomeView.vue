@@ -1,59 +1,27 @@
-<script setup>
-import FruitImage from '../components/FruitImage.vue';
-import ChangeTheme from '../components/ChangeTheme.vue';
-import TimerLayout from '../components/TimerLayout.vue';
-import FluidAnimation from '../components/FluidAnimation.vue';
-import SoundBoardView from './SoundBoardView.vue';
-import InventoryView from './InventoryView.vue';
-import SettingsView from './SettingsView.vue';
+<script setup lang="ts">
+import FruitImage from '@/components/FruitImage.vue';
+import ChangeTheme from '@/components/ChangeTheme.vue';
+import TimerLayout from '@/components/TimerLayout.vue';
+import FluidAnimation from '@/components/FluidAnimation.vue';
 
+import SoundBoardView from "@/views/SoundBoardView.vue";
+import InventoryView from '@/views/InventoryView.vue';
+import SettingsView from '@/views/SettingsView.vue';
+
+import { Tab } from '@/types/Navigation';
 import { ref } from 'vue';
 
 const imgName = ref();
-const timer = ref();
 
 const timerDuration = ref();
 const timerState = ref();
 const isTimer = ref(false);
 const isPaused = ref(true);
-const tabName = defineModel({default: 'home'});
+const tabName = defineModel<Tab>({default: Tab.Home});
 
-const imgUpdate = (e) => {
-  imgName.value = e;
+const imgUpdate = (givenName: string) => {
+  imgName.value = givenName;
 }
-
-const onStart = (num) => {
-  isPaused.value = false;
-  if(num){
-    timerDuration.value = num;
-    timerState.value = 'running';
-    isTimer.value = true;
-    return
-  }
-
-  isTimer.value = true;
-  timerState.value = 'running';
-}
-
-const onPause = () => {
-  timerState.value = 'paused';
-  isPaused.value = true;
-}
-
-const onStop = () => {
-  isTimer.value = false;
-  isPaused.value = true;
-}
-
-const togglePause = () => {
-  if(isPaused.value){
-    timer.value.pauseTimer();
-    return
-  }
-
-  timer.value.startTimer();
-}
-
 </script>
 
 <template>
@@ -63,10 +31,10 @@ const togglePause = () => {
     :duration="timerDuration"
     :state="timerState"
   />
-  <!-- Tabs -->
-  <SoundBoardView :class="{'hidden': tabName!='disc'}"/>
-  <InventoryView v-if="tabName == 'inventory'" />
-  <SettingsView v-if="tabName == 'settings'"/>
+  <!-- Tab -->
+  <SoundBoardView :class="{'hidden': tabName != Tab.Disc}" />
+  <InventoryView v-if="tabName == Tab.Inventory" />
+  <SettingsView v-if="tabName == Tab.Settings" />
 
   <!-- main -->
   <div 
@@ -83,20 +51,14 @@ const togglePause = () => {
         v-if="imgName"
         :img-name="imgName"
         class="z-10 mt-4"
-        @on-toggle="togglePause"
         v-model="isPaused"
       />
     </div>
     <!-- right -->
     <TimerLayout 
       class="mt-4 z-10"
-      @on-start="onStart"
-      @on-pause="onPause"
-      @on-stop="onStop"
-      ref="timer"
     />
   </div>
-  
 </template>
 
 <style scoped>

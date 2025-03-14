@@ -1,5 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import type { Ref } from 'vue';
 
 defineProps({
   audioName: {
@@ -7,10 +8,11 @@ defineProps({
     required: true,
   }
 });
+
 const audio = ref();
 const isClicked = ref(false);
 const shouldIgnore = ref(false);
-const btnRef = ref(null);
+const btnRef: Ref<HTMLElement | null> = ref(null);
 const height = ref('0%');
 
 const getHeight = () => {
@@ -55,14 +57,15 @@ const togglePlay = () => {
   }, 200);
 }
 
-
-const controlVolume = (e) => {
+const controlVolume = (e: Event) => {
+  const wheelEvent = e as WheelEvent;
+  
   // down
-  if(e.deltaY > 0 && audio.value.volume > 0.1){
+  if(wheelEvent.deltaY > 0 && audio.value.volume > 0.1){
     audio.value.volume -= 0.1;
   }
 
-  else if(e.deltaY < 0 && audio.value.volume < 1){
+  else if(wheelEvent.deltaY < 0 && audio.value.volume < 1){
     audio.value.volume += 0.1;
   }
 
@@ -96,16 +99,14 @@ onUnmounted(()=>{
       :style="{
         height: height
       }"
-    >
-    </div>
-    <slot></slot>
+    />
+    <slot />
     <audio 
       ref="audio"
       loop
       :src="`/ambient/${audioName}`"
       type="audio/ogg"
-    >
-    </audio>
+    />
   </div>
 </template>
 

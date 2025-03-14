@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { appWindow } from '@tauri-apps/api/window';
 import MinimizeIcon from './icons/MinimizeIcon.vue';
 import CloseIcon from './icons/CloseIcon.vue';
@@ -7,8 +7,10 @@ import DiscIcon from "./icons/DiscIcon.vue";
 import WarehouseIcon from './icons/WarehouseIcon.vue';
 import SettingsIcon from './icons/SettingsIcon.vue';
 import GithubIcon from './icons/GithubIcon.vue';
-import { playClick, playBack } from '../misc/audio';
+import { playClick, playBack } from '@/misc/audio';
 import { ref } from 'vue';
+
+import { Tab } from '@/types/Navigation';
 
 const emit = defineEmits(['onTab']);
 
@@ -19,25 +21,23 @@ const hide = () => {
 }
 
 const isOpen = ref(false);
-const lastTab = ref();
+const lastTab = ref<Tab | null>();
 
-const sendEmit = (name) => {
-  
-
-  if(lastTab.value == name){
+const sendEmit = (tab: Tab) => {
+  if(lastTab.value == tab){
     playBack();
     goHome();
     return;
   }
 
   playClick();
-  emit('onTab', name);
-  lastTab.value = name;
+  emit('onTab', tab);
+  lastTab.value = tab;
 }
 
 const goHome = () => {
-  emit('onTab', 'home');
-  lastTab.value = '';
+  emit('onTab', Tab.Home);
+  lastTab.value = null;
 }
 
 const autoClose = () =>{
@@ -68,16 +68,16 @@ const autoClose = () =>{
         :class="{'hidden': !isOpen}"
       >
         <DiscIcon 
-          @click="sendEmit('disc')"
+          @click="sendEmit(Tab.Disc)"
           class="micro"
         />
         <WarehouseIcon
-          @click="sendEmit('inventory')" 
+          @click="sendEmit(Tab.Inventory)" 
           class="micro"
         />
 
         <SettingsIcon
-          @click="sendEmit('settings')" 
+          @click="sendEmit(Tab.Settings)" 
           class="micro"
         />
         <a 
@@ -103,7 +103,6 @@ const autoClose = () =>{
         @click="appWindow.close()"
       />
     </div>
-
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
   imgName: {
     type: String,
@@ -13,7 +13,8 @@ defineProps({
 
 <template>
   <div class="card relative rounded">
-    <img :src="`/img/${imgName}`" 
+    <img 
+      :src="`/img/${imgName}`" 
       class="transition"
     >
     <div>

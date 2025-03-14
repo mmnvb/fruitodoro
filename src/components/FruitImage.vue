@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
   imgName: {
     type: String,
@@ -7,13 +7,15 @@ defineProps({
 });
 
 const emit = defineEmits(['onToggle']) 
-const isPaused = defineModel({default: true});
+const isPaused = defineModel({
+  type: Boolean,
+  default: true
+});
 
 const togglePause = () => {
   isPaused.value = !isPaused.value;
   emit('onToggle');
 }
-
 </script>
 
 <template>

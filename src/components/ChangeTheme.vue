@@ -1,37 +1,48 @@
-<script setup>
-import themes from '../assets/themes.json'
+<script setup lang="ts">
 import { onMounted, ref } from 'vue';
+
 import LeftArrowIcon from './icons/LeftArrowIcon.vue'
 import RightArrowIcon from './icons/RightArrowIcon.vue'
-import { playClick } from '../misc/audio';
+
+import { playClick } from '@/misc/audio';
+
+import themeData from '../assets/themes.json';
+import type { ColorPalette, InventoryItem, Themes } from '@/types/Themes';
+import type { NavigationDirection } from '@/types/Navigation';
+
+
+const themes: Themes = themeData;
 
 const index = ref(0);
 const emit = defineEmits(['updateImg']);
 const fruitName = ref();
 
-const applyTheme = (theme) => {
+const applyTheme = (theme: string) => {
   const root = document.documentElement;
   const themeColors = themes[theme].colors;
 
   // change colors
   Object.keys(themeColors).forEach((key) => {
-    root.style.setProperty(key, themeColors[key]);
+    root.style.setProperty(
+      key as keyof ColorPalette,
+      themeColors[key as keyof ColorPalette]
+    );
   });
 }
 
-const changeImage = (theme) => {
+const changeImage = (theme: string) => {
   const img = themes[theme].img;
   emit('updateImg', img);
 }
 
-const setTheme = (themeName) => {
+const setTheme = (themeName: string) => {
   applyTheme(themeName);
   changeImage(themeName);
   fruitName.value = themeName;
   localStorage.setItem('selectedTheme', themeName);
 }
 
-const nextTheme = (direction) => {
+const nextTheme = (direction: NavigationDirection) => {
   playClick();
   index.value += (direction == "left" ? -1 : 1);
 
@@ -53,12 +64,12 @@ const initInventory = () => {
   const inventory = localStorage.getItem('inventory');
 
   if(!inventory){
-    let obj = {}
+    const obj: Record<string, InventoryItem> = {}
 
-    Object.keys(themes).forEach((key)=>{
+    Object.keys(themes).forEach((key: string)=>{
       obj[key] = {
         count: 0,
-        img: themes[key].img,
+        img: themes[key].img as string,
         name: key
       }
     })
@@ -88,21 +99,25 @@ onMounted(()=>{
     select-none
     "
   >
-    <div class="pair">
-    </div>
+    <div class="pair" />
 
     <div class="flex w-3/4 justify-around items-center h-full">
-      <LeftArrowIcon class="btn" @click="nextTheme('left')"/>
+      <LeftArrowIcon 
+        class="btn"
+        @click="nextTheme('left')"
+      />
       <p 
         class="name w-3/4 text-center text-xl"
       >
         {{ fruitName }}
       </p>
-      <RightArrowIcon  class="btn" @click="nextTheme('right')" />
+      <RightArrowIcon
+        class="btn"
+        @click="nextTheme('right')"
+      />
     </div>
 
-    <div class="pair">
-    </div>
+    <div class="pair" />
   </div>
 </template>
 

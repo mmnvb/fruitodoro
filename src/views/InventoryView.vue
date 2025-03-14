@@ -1,11 +1,16 @@
-<script setup>
-import FruitCard from '../components/FruitCard.vue';
+<script setup lang="ts">
+import FruitCard from '@/components/FruitCard.vue';
 import { onMounted, ref } from 'vue';
+import type { InventoryItem } from '@/types/Themes';
 
-const fruits = ref(null);
+const fruits = ref<InventoryItem[] | null>(null);
 
 const refresh = () => {
-  fruits.value = JSON.parse(localStorage.getItem('inventory'));
+  const storage = localStorage.getItem('inventory');
+
+  if(storage){
+    fruits.value = JSON.parse(storage);
+  }
 }
 
 onMounted(()=>{
@@ -14,10 +19,14 @@ onMounted(()=>{
 </script>
 
 <template>
-  <div class="
+  <div
+    class="
     main rounded-b-lg flex flex-col items-center select-none
-    ">
-    <h1 class="text-center mt-4 text-xl">Inventory</h1>
+    "
+  >
+    <h1 class="text-center mt-4 text-xl">
+      Inventory
+    </h1>
 
     <div
       class="
@@ -29,7 +38,7 @@ onMounted(()=>{
       <FruitCard 
         v-for="item in fruits"
         :key="item.img"
-        :imgName="item.img"
+        :img-name="item.img"
         :quantity="item.count"
       />
     </div>
