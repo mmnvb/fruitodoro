@@ -1,0 +1,48 @@
+import PlayIcon from './icons/PlayIcon.vue'
+import StopIcon from './icons/StopIcon.vue'
+import PauseIcon from './icons/PauseIcon.vue'
+import CheckIcon from './icons/CheckIcon.vue'
+import CloseIcon from './icons/CloseIcon.vue'
+import  AddIcon from './icons/AddIcon.vue';
+import LikeIcon from './icons/LikeIcon.vue';
+
+<span 
+v-if="streak > 0" 
+class="
+  text-sm text-center
+  absolute bottom-3 right-3
+  select-none sec
+  "
+>
+{{ streak }}
+</span>
+
+
+<div class="w-full flex justify-center">
+<h2 
+  class="text-6xl w-1/6 select-none text-center overflow-hidden"
+  v-for="digit in strTime"
+>
+  {{ digit }}
+</h2>
+</div>
+
+
+
+<div class="toolbox flex w-3/6 mt-2 flex-col items-center gap-3">
+  <div v-if="!isDialog && !isAlarm" class="w-full flex justify-around items-center">
+    <PlayIcon v-if="isPaused" @click="startTimer"/>
+    <PauseIcon v-else @click="pauseTimer" />
+    <StopIcon @click="isDialog = true; playClick();"/>
+  </div>
+  <!-- confirm to stop -->
+  <div v-if="isDialog && !isAlarm" class="w-full flex justify-around items-center">
+    <CheckIcon @click="confirmStop(true)" />
+    <CloseIcon @click="confirmStop(false)" />
+  </div>
+
+  <div v-if="isAlarm" class="w-full flex justify-around items-center">
+    <LikeIcon @click="confirmAlarm(false)"/>
+    <AddIcon @click="confirmAlarm(true)"/>
+  </div>
+</div>

@@ -1,12 +1,13 @@
 {
-  "name": "pomodoro",
+  "name": "fruitodoro",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "preview": "vite preview",
+    "build": "vite build",
+    "type-check": "vue-tsc --build --force",
     "tauri": "tauri",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
@@ -15,8 +16,14 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.16.11",
     "@tauri-apps/cli": "^1.5.0",
     "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-typescript": "^14.0.1",
+    "@vue/tsconfig": "^0.5.1",
+    "typescript": "~5.5.4",
+    "vue-tsc": "^2.1.6",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.8.0",
     "eslint-plugin-vue": "^9.27.0",

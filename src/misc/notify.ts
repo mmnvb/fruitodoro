@@ -1,6 +1,6 @@
 import { isPermissionGranted, requestPermission, sendNotification } from '@tauri-apps/api/notification';
 
-export async function notify(title, body){
+export async function notify(title: string, body: string): Promise<void> {
   let permissionGranted = await isPermissionGranted();
 
   if (!permissionGranted) {

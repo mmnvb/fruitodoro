@@ -958,6 +958,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "fruitodoro"
+version = "0.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+]
+
+[[package]]
 name = "futf"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2295,16 +2305,6 @@ dependencies = [
  "rustix",
  "tracing",
  "windows-sys 0.59.0",
-]
-
-[[package]]
-name = "pomodoro"
-version = "0.0.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
 ]
 
 [[package]]
