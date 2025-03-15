@@ -6,15 +6,18 @@ defineProps({
   }
 });
 
-const emit = defineEmits(['onToggle']) 
-const isPaused = defineModel({
-  type: Boolean,
-  default: true
-});
+import { useTimerStore } from '@/stores/timer';
+import { TimerState } from "@/types/Timer";
+
+const store = useTimerStore();
 
 const togglePause = () => {
-  isPaused.value = !isPaused.value;
-  emit('onToggle');
+  if(store.state == TimerState.Paused){
+    store.handlePlay();
+  }
+  else if(store.state == TimerState.Playing) {
+    store.handlePause();
+  }
 }
 </script>
 

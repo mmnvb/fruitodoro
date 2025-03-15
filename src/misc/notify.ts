@@ -11,7 +11,7 @@ export async function notify(title: string, body: string): Promise<void> {
   if (permissionGranted) {
     sendNotification({ 
       title: title,
-      body: body
+      body: body,
     });
   }
 }

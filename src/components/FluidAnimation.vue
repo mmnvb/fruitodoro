@@ -1,25 +1,18 @@
 <script setup lang="ts">
-defineProps({
-  duration:{
-    type: Number,
-    required: true
-  },
-  state: {
-    type: String,
-    required: true
-  }
-})
+import { TimerState } from "@/types/Timer";
+import { useTimerStore } from '@/stores/timer';
 
+const store = useTimerStore();
 </script>
 
 <template>
-  <div 
+  <div
+    :key="store.startTime"
     :style="{ 
-      '--animation-duration': `${duration}s`,
-      '--animation-state': state 
+      '--animation-duration': `${store.startTime}s`,
+      '--animation-state': store.state == TimerState.Playing ? 'playing' : 'paused'
     }"
     class="container rounded-b-lg"
-    @click="console.log(duration, state)"
   />
 </template>
 
@@ -54,5 +47,4 @@ defineProps({
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
-
 </style>

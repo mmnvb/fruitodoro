@@ -1,22 +1,100 @@
 <script setup lang="ts">
+import PlayIcon from '@/components/icons/PlayIcon.vue'
+import PauseIcon from '@/components/icons/PauseIcon.vue'
+import  AddIcon from '@/components/icons/AddIcon.vue';
+import LikeIcon from '@/components/icons/LikeIcon.vue';
+import StopIcon from '@/components/icons/StopIcon.vue'
+import CheckIcon from '@/components/icons/CheckIcon.vue'
+import CloseIcon from '@/components/icons/CloseIcon.vue'
 
+import { useTimerStore } from '@/stores/timer';
+import { TimerState } from "@/types/Timer";
+import { computed, ref } from 'vue';
 
-// const strTime = computed(()=>{
-//   let min = Math.floor(timer.value / 60);
-//   let sec = Math.round(((timer.value / 60) - min) * 60);
+const store = useTimerStore();
+const isDialog = ref(false);
 
-//   min = min.toFixed().padStart(2, "0").split('');
-//   sec = sec.toFixed().padStart(2, "0").split('');
+const currentDisplay = computed(() => {
+  const min = Math.floor(store.timer / 60);
+  const sec = Math.round(((store.timer / 60) - min) * 60);
 
-//   return [...min,':',...sec];
-// });
+  const minArr = min.toFixed().padStart(2, "0").split('');
+  const secArr = sec.toFixed().padStart(2, "0").split('');
+
+  return [...minArr, ':', ...secArr];
+});
+
+const handleStop = () => {
+  isDialog.value = true;
+}
+
+const rejectStop = () => {
+  isDialog.value = false;
+}
+
+const acceptStop = () => {
+  isDialog.value = false;
+  store.breakTimer();
+}
 </script>
 
 <template>
   <div 
     class="flex justify-center items-center flex-col pt-3 w-2/4 h-full relative"
-  > 
-    under work...
+  >
+    <span 
+      class="
+      text-sm text-center
+      absolute bottom-3 right-3
+      select-none sec
+      "
+    >
+      {{ store.timerTitle }} - {{ store.workCount }}
+    </span>
+
+    <div class="w-full flex justify-center">
+      <h2 
+        class="text-6xl w-1/6 select-none text-center overflow-hidden"
+        v-for="digit in currentDisplay"
+        :key="digit"
+      >
+        {{ digit }}
+      </h2>
+    </div>
+
+    <div class="toolbox flex w-3/6 mt-2 flex-col items-center gap-3">
+      <div
+        v-if="!store.isAlarm && !isDialog"
+        class="w-full flex justify-around items-center"
+      >
+        <PlayIcon
+          v-if="store.state != TimerState.Playing"
+          @click="store.handlePlay"
+        />
+        <PauseIcon
+          v-else
+          @click="store.handlePause"
+        />
+        <StopIcon @click="handleStop" />
+      </div>
+
+      <!-- confirm to stop -->
+      <div
+        v-if="isDialog && !store.isAlarm"
+        class="w-full flex justify-around items-center"
+      >
+        <CheckIcon @click="acceptStop" />
+        <CloseIcon @click="rejectStop" />
+      </div>
+
+      <div
+        v-if="store.isAlarm"
+        class="w-full flex justify-around items-center"
+      >
+        <LikeIcon @click="store.acceptAlarm" />
+        <AddIcon @click="store.postponeAlarm" />
+      </div>
+    </div>
   </div>
 </template>
 

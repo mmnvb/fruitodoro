@@ -2,11 +2,12 @@
 import FruitCard from '@/components/FruitCard.vue';
 import { onMounted, ref } from 'vue';
 import type { InventoryItem } from '@/types/Themes';
+import { INVENTORY_KEY } from '@/consts';
 
 const fruits = ref<InventoryItem[] | null>(null);
 
 const refresh = () => {
-  const storage = localStorage.getItem('inventory');
+  const storage = localStorage.getItem(INVENTORY_KEY);
 
   if(storage){
     fruits.value = JSON.parse(storage);

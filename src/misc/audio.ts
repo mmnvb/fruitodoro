@@ -9,11 +9,11 @@ export function playBack(){
 const alarm = new Audio('/sound/ringtone_1.ogg');
 alarm.loop = true;
 
-export function playAlarm(){
+export function playAlarmSound(){
   alarm.play();
 }
 
-export function stopAlarm(){
+export function stopAlarmSound(){
   alarm.pause();
   alarm.currentTime = 0;
 }

@@ -12,11 +12,6 @@ import { Tab } from '@/types/Navigation';
 import { ref } from 'vue';
 
 const imgName = ref();
-
-const timerDuration = ref();
-const timerState = ref();
-const isTimer = ref(false);
-const isPaused = ref(true);
 const tabName = defineModel<Tab>({default: Tab.Home});
 
 const imgUpdate = (givenName: string) => {
@@ -26,11 +21,8 @@ const imgUpdate = (givenName: string) => {
 
 <template>
   <!-- full screen fluid animation -->
-  <FluidAnimation
-    v-if="isTimer"
-    :duration="timerDuration"
-    :state="timerState"
-  />
+  <FluidAnimation />
+
   <!-- Tab -->
   <SoundBoardView :class="{'hidden': tabName != Tab.Disc}" />
   <InventoryView v-if="tabName == Tab.Inventory" />
@@ -51,13 +43,11 @@ const imgUpdate = (givenName: string) => {
         v-if="imgName"
         :img-name="imgName"
         class="z-10 mt-4"
-        v-model="isPaused"
       />
     </div>
+    
     <!-- right -->
-    <TimerLayout 
-      class="mt-4 z-10"
-    />
+    <TimerLayout class="mt-4 z-10" />
   </div>
 </template>
 

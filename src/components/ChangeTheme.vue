@@ -9,6 +9,7 @@ import { playClick } from '@/misc/audio';
 import themeData from '../assets/themes.json';
 import type { ColorPalette, InventoryItem, Themes } from '@/types/Themes';
 import type { NavigationDirection } from '@/types/Navigation';
+import { SELECTED_THEME_KEY, INVENTORY_KEY } from "@/consts";
 
 
 const themes: Themes = themeData;
@@ -39,7 +40,7 @@ const setTheme = (themeName: string) => {
   applyTheme(themeName);
   changeImage(themeName);
   fruitName.value = themeName;
-  localStorage.setItem('selectedTheme', themeName);
+  localStorage.setItem(SELECTED_THEME_KEY, themeName);
 }
 
 const nextTheme = (direction: NavigationDirection) => {
@@ -61,7 +62,7 @@ const nextTheme = (direction: NavigationDirection) => {
 }
 
 const initInventory = () => {
-  const inventory = localStorage.getItem('inventory');
+  const inventory = localStorage.getItem(INVENTORY_KEY);
 
   if(!inventory){
     const obj: Record<string, InventoryItem> = {}
@@ -74,12 +75,12 @@ const initInventory = () => {
       }
     })
 
-    localStorage.setItem('inventory', JSON.stringify(obj));
+    localStorage.setItem(INVENTORY_KEY, JSON.stringify(obj));
   }
 }
 
 onMounted(()=>{
-  const savedTheme = localStorage.getItem('selectedTheme');
+  const savedTheme = localStorage.getItem(SELECTED_THEME_KEY);
   initInventory();
 
   if (savedTheme) {
