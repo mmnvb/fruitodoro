@@ -3,6 +3,11 @@ import type { TimerSettingsStorage } from "@/types/Timer";
 import type { NotificationTitlesStorage } from '@/types/Notification';
 
 
+// TIMES 
+export function setTimerSettings(obj: TimerSettingsStorage): void {
+  localStorage.setItem(TIMER_SETTINGS_KEY, JSON.stringify(obj));
+}
+
 export function loadTimerSettings(): TimerSettingsStorage {
   const storageSettings = localStorage.getItem(TIMER_SETTINGS_KEY);
 
@@ -11,15 +16,20 @@ export function loadTimerSettings(): TimerSettingsStorage {
   }
 
   const defaultSettings: TimerSettingsStorage = {
-    'Work': 5,
-    'Rest': 1,
-    'BigRest': 10,
-    'ExtraTime': 2
+    'Work': 1500,
+    'Rest': 300,
+    'BigRest': 1800,
+    'ExtraTime': 60
   }
 
-  // localStorage.setItem(TIMER_SETTINGS_KEY, JSON.stringify(defaultSettings));
+  setTimerSettings(defaultSettings);
 
   return defaultSettings;
+}
+
+// NOTIFICATIONS 
+export function setNotificationTitles(obj: NotificationTitlesStorage): void {
+  localStorage.setItem(NOTIFICATION_TITLES_KEY, JSON.stringify(obj));
 }
 
 export function loadNotificationTitles(): NotificationTitlesStorage {
@@ -36,7 +46,7 @@ export function loadNotificationTitles(): NotificationTitlesStorage {
     'ExtraTime': "Extra time is over!"
   }
 
-  // localStorage.setItem(NOTIFICATION_TITLES_KEY, JSON.stringify(defaultSettings));
-
+  setNotificationTitles(defaultSettings);
+  
   return defaultSettings;
 }

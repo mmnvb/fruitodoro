@@ -12,12 +12,12 @@ import { TimerState } from "@/types/Timer";
 const store = useTimerStore();
 
 const togglePause = () => {
-  if(store.state == TimerState.Paused){
-    store.handlePlay();
-  }
-  else if(store.state == TimerState.Playing) {
+  if(store.state == TimerState.Playing) {
     store.handlePause();
+    return;
   }
+  
+  store.handlePlay();
 }
 </script>
 

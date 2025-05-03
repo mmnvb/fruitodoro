@@ -6,7 +6,7 @@ import FluidAnimation from '@/components/FluidAnimation.vue';
 
 import SoundBoardView from "@/views/SoundBoardView.vue";
 import InventoryView from '@/views/InventoryView.vue';
-import SettingsView from '@/views/SettingsView.vue';
+import SettingsView from './settings/SettingsView.vue';
 
 import { Tab } from '@/types/Navigation';
 import { ref } from 'vue';

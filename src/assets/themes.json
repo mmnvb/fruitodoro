@@ -8,7 +8,7 @@
       "--color-surface": "#E0FFE0",
       "--color-text-primary": "#556B2F",
       "--color-text-secondary": "#6B8E23",
-      "--color-border": "#98FB98",
+      "--color-border": "#cbebcb",
       "--color-hover": "#7FFF00",
       "--color-shadow": "rgba(107, 142, 35, 0.15)"
     }
@@ -64,7 +64,7 @@
       "--color-surface": "#F3E5F5",
       "--color-text-primary": "#6A1B9A",
       "--color-text-secondary": "#7B1FA2",
-      "--color-border": "#CE93D8",
+      "--color-border": "#e7bfed",
       "--color-hover": "#BA68C8",
       "--color-shadow": "rgba(149, 117, 205, 0.15)"
     }

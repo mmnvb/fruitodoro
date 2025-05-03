@@ -126,6 +126,7 @@ const autoClose = () =>{
 
 .btn:hover, .micro:hover{
   color: var(--color-background);
+  cursor: pointer;
 }
 
 .btn:active{

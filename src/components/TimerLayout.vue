@@ -49,7 +49,11 @@ const acceptStop = () => {
       select-none sec
       "
     >
-      {{ store.timerTitle }} - {{ store.workCount }}
+      {{ store.timerTitle }} 
+      <span v-if="store.workCount > 0">
+        -
+        {{ store.workCount }}
+      </span>
     </span>
 
     <div class="w-full flex justify-center">
