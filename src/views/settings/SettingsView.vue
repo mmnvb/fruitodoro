@@ -8,6 +8,7 @@ import SettingsNotificationTab from './components/SettingsNotificationTab.vue';
 import SettingsPreferencesTab from './components/SettingsPreferencesTab.vue';
 import SettingsThemesTab from './components/SettingsThemesTab.vue';
 import SaveIcon from '@/components/icons/SaveIcon.vue';
+import { useTimerStore } from '@/stores/timer';
 
 const tabs: SettingsTabItem[] = [
   {
@@ -37,6 +38,7 @@ const tabComponents = {
 
 const currentTab = ref<SettingsTabItem>(tabs[0]);
 const currentTabComponentRef = ref();
+const timerStore = useTimerStore();
 
 const handleSelect = (tab: SettingsTabItem) => {
   currentTab.value = tab;
@@ -46,6 +48,7 @@ const handleSelect = (tab: SettingsTabItem) => {
 const onSaveClicked = () => {
   playBack();
   currentTabComponentRef.value.save();
+  timerStore.reloadSettings();
 }
 </script>
 
@@ -65,11 +68,12 @@ const onSaveClicked = () => {
             :key="key"
             class="
               flex border-[--color-shadow] px-3 py-1 text-sm items-center rounded m-1
-              text-[--color-text-secondary]
-              hover:text-[--color-text-primary]
+              text-[--color-text-primary]
+              hover:text-[--color-hover]
+              bg-[--color-surface]
               "
             :class="{
-              'bg-[--color-surface] text-[--color-text-primary]': item.value == currentTab.value
+              'bg-transparent text-[--color-text-secondary]': item.value != currentTab.value
             }"
             @click="handleSelect(item)"
           >

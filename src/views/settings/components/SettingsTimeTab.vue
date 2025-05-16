@@ -31,7 +31,7 @@ defineExpose({
         <input
           type="number"
           v-model="currentSettings[timerKey]"
-          class="px-1 outline-none"
+          class="px-1 outline-none rounded"
         >
       </div>
     </div>

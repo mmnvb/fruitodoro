@@ -92,7 +92,7 @@
         "--color-surface": "#FFE4E4", 
         "--color-text-primary": "#C2185B", 
         "--color-text-secondary": "#E57373", 
-        "--color-border": "#FF8A80", 
+        "--color-border": "#FFA097", 
         "--color-hover": "#F44336", 
         "--color-shadow": "rgba(252, 108, 133, 0.15)" 
       }

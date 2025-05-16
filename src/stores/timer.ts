@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-import { TimerContext, TimerState, type TimerSettingsStorageKeys } from "@/types/Timer";
+import { TimerContext, TimerState, type TimerSettingsStorageKeys, type TimerSettingsStorage } from "@/types/Timer";
 import { loadTimerSettings, loadNotificationTitles } from "@/misc/settings";
 import { defineStore } from 'pinia'
 import { notify } from "@/misc/notify";
@@ -14,8 +14,8 @@ export const useTimerStore = defineStore('timer', () => {
   const isExtraTime = ref<boolean>(false);
   const isAlarm = ref<boolean>(false);
 
-  const SETTINGS = loadTimerSettings();
-  const TITLES: NotificationTitlesStorage = loadNotificationTitles();
+  let SETTINGS: TimerSettingsStorage = loadTimerSettings();
+  let TITLES: NotificationTitlesStorage = loadNotificationTitles();
 
   const startTime = ref<number>(SETTINGS[TimerContext[context.value] as TimerSettingsStorageKeys]);
   const timer = ref<number>(startTime.value);
@@ -23,6 +23,15 @@ export const useTimerStore = defineStore('timer', () => {
   let intervalId: number;
 
   // ---- General ----
+  const reloadSettings = () => {
+    SETTINGS = loadTimerSettings();
+    TITLES = loadNotificationTitles();
+
+    startTime.value = SETTINGS[TimerContext[context.value] as TimerSettingsStorageKeys];
+    timer.value = startTime.value;
+    handlePause();
+  }
+
   const getNextContext = (): TimerContext => {
     switch(context.value){
       case TimerContext.Work:
@@ -149,7 +158,8 @@ export const useTimerStore = defineStore('timer', () => {
     handlePlay,
     handlePause,
     breakTimer,
+    reloadSettings,
     // display
-    timerTitle
+    timerTitle,
   }
 });

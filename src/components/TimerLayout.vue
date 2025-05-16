@@ -59,8 +59,8 @@ const acceptStop = () => {
     <div class="w-full flex justify-center">
       <h2 
         class="text-6xl w-1/6 select-none text-center overflow-hidden"
-        v-for="digit in currentDisplay"
-        :key="digit"
+        v-for="(digit, index) in currentDisplay"
+        :key="index"
       >
         {{ digit }}
       </h2>
