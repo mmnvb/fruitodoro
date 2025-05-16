@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <h2>notify</h2>
+  <h2>Under construction...</h2>
 </template>

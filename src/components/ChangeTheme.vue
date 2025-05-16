@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue';
 import LeftArrowIcon from './icons/LeftArrowIcon.vue'
 import RightArrowIcon from './icons/RightArrowIcon.vue'
 
-import { playClick } from '@/misc/audio';
+import { useAudioStore } from '@/stores/audio';
 
 import themeData from '../assets/themes.json';
 import type { ColorPalette, InventoryItem, Themes } from '@/types/Themes';
@@ -13,6 +13,7 @@ import { SELECTED_THEME_KEY, INVENTORY_KEY } from "@/consts";
 
 
 const themes: Themes = themeData;
+const audioStore = useAudioStore();
 
 const index = ref(0);
 const emit = defineEmits(['updateImg']);
@@ -44,7 +45,7 @@ const setTheme = (themeName: string) => {
 }
 
 const nextTheme = (direction: NavigationDirection) => {
-  playClick();
+  audioStore.playClick();
   index.value += (direction == "left" ? -1 : 1);
 
   const keys = Object.keys(themes);

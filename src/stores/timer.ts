@@ -3,11 +3,12 @@ import { TimerContext, TimerState, type TimerSettingsStorageKeys, type TimerSett
 import { loadTimerSettings, loadNotificationTitles } from "@/misc/settings";
 import { defineStore } from 'pinia'
 import { notify } from "@/misc/notify";
-import { playAlarmSound, stopAlarmSound } from "@/misc/audio";
+import { useAudioStore } from "./audio";
 import type { NotificationTitlesStorage } from "@/types/Notification";
 
 
 export const useTimerStore = defineStore('timer', () => {
+  const audioStore = useAudioStore();
   const state = ref<TimerState>(TimerState.Idle);
   const context = ref<TimerContext>(TimerContext.Work);
   const workCount = ref<number>(0);
@@ -50,7 +51,7 @@ export const useTimerStore = defineStore('timer', () => {
 
   // ---- ALARM LOGIC ----
   const startAlarm = () => {
-    playAlarmSound();
+    audioStore.playAlarmSound();
     isAlarm.value = true;
 
     if(isExtraTime.value){
@@ -62,7 +63,7 @@ export const useTimerStore = defineStore('timer', () => {
   }
 
   const acceptAlarm = () => {
-    stopAlarmSound();
+    audioStore.stopAlarmSound();
     isAlarm.value = false;
     isExtraTime.value = false;
 
@@ -77,7 +78,7 @@ export const useTimerStore = defineStore('timer', () => {
   }
 
   const postponeAlarm = () => {
-    stopAlarmSound();
+    audioStore.stopAlarmSound();
     isAlarm.value = false;
 
     loadNextTimer('ExtraTime');
@@ -116,6 +117,7 @@ export const useTimerStore = defineStore('timer', () => {
     if(state.value != TimerState.Playing){
       state.value = TimerState.Playing;
       intervalId = setInterval(decrementTime, 1000);
+      audioStore.playClick();
     }
   }
 
@@ -123,6 +125,7 @@ export const useTimerStore = defineStore('timer', () => {
     if(state.value != TimerState.Paused){
       clearInterval(intervalId);
       state.value = TimerState.Paused;
+      audioStore.playBack();
     }
   }
 

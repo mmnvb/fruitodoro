@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <h2>themes</h2>
+  <h2>Under construction...</h2>
 </template>

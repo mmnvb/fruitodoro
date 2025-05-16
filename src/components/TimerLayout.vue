@@ -8,10 +8,12 @@ import CheckIcon from '@/components/icons/CheckIcon.vue'
 import CloseIcon from '@/components/icons/CloseIcon.vue'
 
 import { useTimerStore } from '@/stores/timer';
+import { useAudioStore } from '@/stores/audio';
 import { TimerState } from "@/types/Timer";
 import { computed, ref } from 'vue';
 
 const store = useTimerStore();
+const audioStore = useAudioStore();
 const isDialog = ref(false);
 
 const currentDisplay = computed(() => {
@@ -25,16 +27,19 @@ const currentDisplay = computed(() => {
 });
 
 const handleStop = () => {
+  audioStore.playClick();
   isDialog.value = true;
 }
 
 const rejectStop = () => {
   isDialog.value = false;
+  audioStore.playClick();
 }
 
 const acceptStop = () => {
   isDialog.value = false;
   store.breakTimer();
+  audioStore.playBack();
 }
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { SettingsTab, type SettingsTabItem } from "@/types/Navigation";
-import { playBack, playClick } from '@/misc/audio';
+import { useAudioStore } from '@/stores/audio';
 
 import SettingsTimeTab from './components/SettingsTimeTab.vue';
 import SettingsNotificationTab from './components/SettingsNotificationTab.vue';
@@ -39,14 +39,15 @@ const tabComponents = {
 const currentTab = ref<SettingsTabItem>(tabs[0]);
 const currentTabComponentRef = ref();
 const timerStore = useTimerStore();
+const audioStore = useAudioStore();
 
 const handleSelect = (tab: SettingsTabItem) => {
   currentTab.value = tab;
-  playClick();
+  audioStore.playClick();
 }
 
 const onSaveClicked = () => {
-  playBack();
+  audioStore.playBack();
   currentTabComponentRef.value.save();
   timerStore.reloadSettings();
 }

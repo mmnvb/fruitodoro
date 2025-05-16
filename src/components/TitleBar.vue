@@ -7,7 +7,7 @@ import DiscIcon from "./icons/DiscIcon.vue";
 import WarehouseIcon from './icons/WarehouseIcon.vue';
 import SettingsIcon from './icons/SettingsIcon.vue';
 import GithubIcon from './icons/GithubIcon.vue';
-import { playClick, playBack } from '@/misc/audio';
+import { useAudioStore } from '@/stores/audio';
 import { ref } from 'vue';
 
 import { Tab } from '@/types/Navigation';
@@ -22,15 +22,16 @@ const hide = () => {
 
 const isOpen = ref(false);
 const lastTab = ref<Tab | null>();
+const audioStore = useAudioStore();
 
 const sendEmit = (tab: Tab) => {
   if(lastTab.value == tab){
-    playBack();
+    audioStore.playBack();
     goHome();
     return;
   }
 
-  playClick();
+  audioStore.playClick();
   emit('onTab', tab);
   lastTab.value = tab;
 }
@@ -42,10 +43,10 @@ const goHome = () => {
 
 const autoClose = () =>{
   if(isOpen.value){
-    playBack();
+    audioStore.playBack();
     goHome();
   }else{
-    playClick();
+    audioStore.playClick();
   }
   isOpen.value = !isOpen.value;
 }
@@ -85,7 +86,7 @@ const autoClose = () =>{
           target="_blank"
         >
           <GithubIcon 
-            @click="playClick();" 
+            @click="audioStore.playClick();" 
             class="micro"
           />
         </a>
