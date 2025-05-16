@@ -1,32 +1,32 @@
-<div>
-  <img 
-    src='./img/banner.png' 
-    alt='logo' 
-    width="100%"
-  >
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=Yfpj5IL1PTQ">
+    <img src="./img/transparent.png" height="250">
+  </a>
 </div>
 
-<div align='center'>
-  <i>Fruitodoro - is a fun twist on the classic Pomodoro technique!
-  </i>
-</div>
+<p align="center">
+  Fruitodoro - a pomodoro timer on steroids.
+  
+</p>
 
-## 🚀 Features
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=Yfpj5IL1PTQ">
+    📹DEMO
+  </a>
+</p>
 
-- **Fruit Selection**: Choose from a variety of fruits to replace the tomato.
-- **Progress Tracking**: Keep track of your completed sessions.
-- **Soundboard**: Enjoy built-in panel with relaxing sounds.
-- **System tray**: App goes to tray on minimize.
-- **Awesome UI**: Enjoy a cozy, light-themed interface.
-- **Tauri App**: Lightweight and secure, built with [Tauri](https://tauri.app/). 
+## Features
+- pomodoro timer
+- ambient sound soundboard
+- system tray
+- awesome themes
+- cozy UI
 
 <br>
 
-  **[📹DEMO](https://www.youtube.com/watch?v=Yfpj5IL1PTQ)**
-
-
-## 💚 How to use?
-1. **Install** the latest bundle or build on your own
+## Installation
+1. **Install** the latest [bundle](https://github.com/mmnvb/fruitodoro/releases) or build on your own
 2. **Open the bundle** and follow the steps of installation
 3. **Enjoy** the app!
 
@@ -37,24 +37,35 @@ have you done by showing how many watermelons you have.*
 
 <br>
 
-## ⭐️ Contributing
+## Themes
+<p align="center">
+  <img src="./img/screenshots/1.jpg" width="30%" />
+  <img src="./img/screenshots/2.jpg" width="30%" />
+  <img src="./img/screenshots/3.jpg" width="30%" />
+</p>
+<p align="center">
+  <img src="./img/screenshots/4.jpg" width="30%" />
+  <img src="./img/screenshots/5.jpg" width="30%" />
+</p>
 
-This project uses Tauri and Vue 3 with Vite. The codebase looks a bit overloaded
-because I decided to not use state managers like Pinia to have more practice with Vue.
-However, there are a lot of features that might be implemented, so I will be glad to
-see any PRs.
+<!-- <p align="center">
+  <img src="./img/screenshots/6.jpg" width="30%" />
+  <img src="./img/screenshots/7.jpg" width="30%" />
+</p> -->
+
+## Contributing
+This project uses Tauri and Vue 3 and Pinia.
 
 If you want to add a **new fruit**, you can just create an object inside *src/assets/themes.json*
 This object must contain proper css theme colors and img's name. The image itself must be placed to the
-*public/img* directory. Recompile and now you have a new fruit. \
-\
-*Hint: Explore how other fruits are created*
+*public/img* directory. Recompile and now you have a new fruit.
 
-<br>
+*Note: settings tab would have this ability in the future*
 
-## 🛠️ Build
 
-**Rust, tauri and node must be installed ❗️**
+## Build
+
+**Rust, tauri and node must be installed**
 
 
 1. **Clone the repository**
@@ -84,5 +95,5 @@ This object must contain proper css theme colors and img's name. The image itsel
 
 <div align="center">
   <hr>
-  <i>© Bobomurod, 2024 ⭐️</i>
+  <i>© Bobomurod, 2025</i>
 </div>
